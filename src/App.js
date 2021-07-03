@@ -1,10 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import HelloWorld, { helloToday } from './components/HelloWorld.js'
+import Product from './components/Product.js'
+import Cats from './components/Cats';
 
-
-window.localStorage.setItem('productName', 'cat tower');
-window.sessionStorage.setItem('productName', 'cat tower');
 
 
 const product = {
@@ -14,11 +12,12 @@ const product = {
 };
 
 function App() {
-  const productNameFromLocalSrotage = window.localStorage.getItem('productName');
-  const productNameFromSessionSrotage = window.sessionStorage.getItem('productName');
-
   return (
     <div className="App">
+      <main>
+        <Product name="react" lastName="Michael" firstName="Jackson" />
+        <Cats />
+      </main>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -32,16 +31,7 @@ function App() {
         >
           Learn React
         </a>
-        <p>productNameFromLocalSrotage: {productNameFromLocalSrotage}</p>
-        <p>productNameFromSessionSrotage: {productNameFromSessionSrotage}</p>
       </header>
-      <main>
-        <h1>{helloToday}</h1>
-        <HelloWorld product={product} />
-        <HelloWorld product={product} />
-        <HelloWorld product={product} />
-        <HelloWorld product={product} />
-      </main>
     </div>
   );
 }

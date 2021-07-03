@@ -9,13 +9,27 @@ class HelloWorld extends Component {
   // static defaultProps: {
   //   name: 'James',
   // }
+  constructor(props) {
+    super(props)
+    this.state = {
+      count: 0,
+    }
+    // this.handlePlusClick = this.handlePlusClick.bind(this);
+  }
+
+  handlePlusClick = () => {
+    this.setState({ count: this.state.count + 1 })
+    // 이렇게 두번 호출하면 어떻게 될까?
+    // this.setState({ count: this.state.count + 1}) 
+    // this.setState({ count: this.state.count + 1})
+  }
 
   render() {
     return (
       <div>
-        Hello World! {helloToday}
-        <h1>Name:</h1>
-        <span>{this.props.name}</span>
+        Hello {this.props.name}!
+        <span>{this.state.count}</span>
+        <button onClick={this.handlePlusClick}>+1</button>
       </div>
     );
   }

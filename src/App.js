@@ -1,10 +1,5 @@
-import logo from "./logo.svg";
-import "./App.css";
-// import React, { Component } from 'react'
-
-// class HelloWorld extends Component {
-
-// }
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
   return (

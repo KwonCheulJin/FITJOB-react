@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { getCatsBreeds } from '../utils/api'
-import LoadingIndicator from './LoadingIndicator'
-import HeaderButtonGroup from './HeaderButtonGroup'
-
+import LoadingIndicator from './components/LoadingIndicator'
+import HeaderButtonGroup from './components/HeaderButtonGroup'
+import BreedsList from './components/Breeds'
+import CurrentPageNumber from './components/CurrentPageNumber'
 
 
 const FuncCats = () => {
@@ -39,28 +40,12 @@ const FuncCats = () => {
 
   return (
     <div className="Cats">
-      <p>현재 페이지: {currentPage}</p>
+      <CurrentPageNumber currentPage={currentPage} />
       <HeaderButtonGroup onPreviousPage={handlePreviousPage} onNextPage={handleNextPage} />
       <LoadingIndicator isLoading={isLoading} />
-      <ul>
-        {breeds.map((cat, index) => (
-          <li className="Cat" key={`${cat.id}-${index}`}>
-            <span>Name: {cat.name}</span>
-            <span>Origin: {cat.origin}</span>
-            <span>Description: {cat.description}</span>
-            <span>
-              Wiki:{' '}
-              <a href={cat.wikipedia_url} target="_blank">
-                {cat.wikipedia_url}
-              </a>
-            </span>
-            <img className="Image" src={cat.image ? cat.image.url : null} />
-          </li>
-        ))}
-      </ul>
+      <BreedsList breeds={breeds} />
       <LoadingIndicator isLoading={isLoading} />
       <HeaderButtonGroup onPreviousPage={handlePreviousPage} onNextPage={handleNextPage} />
-
     </div>
   )
 }

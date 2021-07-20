@@ -1,6 +1,6 @@
-import './Cats.scss'
+import '../../public/Cats.scss'
 import { Component } from 'react'
-import { getCatsBreeds } from '../utils/api'
+import { getCatsBreeds } from '../../utils/api'
 import LodingIndicator from './LodingIndicator'
 import HeaderButtonGroup from './HeaderButtonGroup'
 

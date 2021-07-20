@@ -17,9 +17,11 @@ const FuncCats = () => {
     const fetchData = async () => {
 
       setIsLoading(true)
+
       const breedsData = await getCatsBreeds(currentPage)
 
       setBreeds((prev) => [...prev, ...breedsData])
+
       setIsLoading(false)
 
     }

@@ -15,6 +15,7 @@ const FuncCats = () => {
   useEffect(() => {
 
     const fetchData = async () => {
+
       setIsLoading(true)
       const breedsData = await getCatsBreeds(currentPage)
 

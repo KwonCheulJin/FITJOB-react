@@ -58,8 +58,8 @@ const FuncCats = () => {
           </li>
         ))}
       </ul>
-      <HeaderButtonGroup onPreviousPage={handlePreviousPage} onNextPage={handleNextPage} />
       <LoadingIndicator isLoading={isLoading} />
+      <HeaderButtonGroup onPreviousPage={handlePreviousPage} onNextPage={handleNextPage} />
 
     </div>
   )

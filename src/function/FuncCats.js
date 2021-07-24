@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { getCatsBreeds } from '../utils/api'
+import { useState, useEffect, useCallback } from 'react'
+import { getCatBreeds } from '../utils/api'
 import LoadingIndicator from './components/LoadingIndicator'
 import HeaderButtonGroup from './components/HeaderButtonGroup'
 import BreedsList from './components/Breeds'
@@ -12,16 +12,31 @@ const FuncCats = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [breeds, setBreeds] = useState([])
 
-  useEffect(() => {
 
+  const handlePreviousPage = useCallback(() => {
+    if (currentPage <= 1) return
+
+    setCurrentPage((previousPage) => previousPage - 1)
+  }, [currentPage])
+
+  const handleNextPage = useCallback(() => {
+    setCurrentPage((previousPage) => previousPage + 1)
+  }, [currentPage])
+
+  useEffect(() => {
+    //useEffect에서 바로 async를 사용할 수 없다.
     const fetchData = async () => {
 
       setIsLoading(true)
 
-      const breedsData = await getCatsBreeds(currentPage)
+      const breedsData = await getCatBreeds(currentPage, 10)
+
+      if (breedsData.length === 0) {
+        setIsLoading(false)
+        return
+      }
 
       setBreeds((prev) => [...prev, ...breedsData])
-
       setIsLoading(false)
 
     }
@@ -30,16 +45,6 @@ const FuncCats = () => {
 
   }, [currentPage])
 
-  const handlePreviousPage = () => {
-    if (currentPage <= 1) {
-      return
-    }
-    return setCurrentPage(currentPage - 1)
-  }
-
-  const handleNextPage = () => {
-    return setCurrentPage(currentPage + 1)
-  }
 
   return (
     <div className="Cats">

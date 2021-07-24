@@ -1,7 +1,7 @@
 const apiKey = 'f658225c-bbff-4520-a93e-16c72a8e066c'
 
 
-export const getCatsBreeds = async (currentPage, limit = 5) => {
+export const getCatBreeds = async (currentPage, limit = 5) => {
   if (typeof currentPage !== 'number') {
     throw new Error('getCatsBreeds 함수의 currentpage 파라미터는 number이어야 합니다.');
   }

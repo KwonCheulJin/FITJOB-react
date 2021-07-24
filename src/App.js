@@ -1,8 +1,9 @@
 import './App.scss';
-import Cats from './class/components/Cats';
+import Cats from './class/Cats';
 import { Route, Switch } from 'react-router-dom';
 import FuncCats from './function/FuncCats'
-// import Counter from './components/Counter'
+import Counter from './class/components/Counter'
+import { useState, useRef } from 'react'
 
 
 function App() {
@@ -28,8 +29,19 @@ function App() {
 
 
 // function App() {
+//   const [fillNumber, setFillNumber] = useState(1)
+//   const counterRef = useRef(null)
+//   const handleClick = () => {
+//     setFillNumber((previousNumber) => previousNumber + 1)
+//   }
 //   return (
-//     <Counter />)
+//     <main>
+//       <Counter fillNumber={fillNumber} ref={counterRef} />
+//       <button onClick={handleClick}>
+//         Plus FillNumber 1
+//       </button>
+//     </main>
+//   )
 // }
 
 export default App;

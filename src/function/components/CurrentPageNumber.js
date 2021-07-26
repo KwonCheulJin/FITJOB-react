@@ -2,7 +2,7 @@ import React from 'react'
 
 const CurrentPageNumber = ({ currentPage }) => {
 
-  console.log(currentPage)
+  // console.log(currentPage)
   if (typeof currentPage !== 'number') {
     throw new Error('currentPage number props로 전달되지 않았습니다.')
   }

@@ -11,11 +11,11 @@ const FuncCats = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
   const [breeds, setBreeds] = useState([])
-
+  // const [counter, setCounter] = useState(0)
 
   const handlePreviousPage = useCallback(() => {
     if (currentPage <= 1) return
-
+    console.log(currentPage)
     setCurrentPage((previousPage) => previousPage - 1)
   }, [currentPage])
 
@@ -36,7 +36,23 @@ const FuncCats = () => {
         return
       }
 
-      setBreeds((prev) => [...prev, ...breedsData])
+      setBreeds((previous) => {
+
+        // console.log(new Set(previous), previous.length, breedsData, currentPage)
+        function getUnique(breedsData, previous) {
+          return breedsData.map((value) => {
+            if (previous.length === undefined) return
+            for (let item of previous) {
+              if (value.id === item.id) return true
+            }
+          });
+        }
+
+        let result = getUnique(breedsData, previous)
+        console.log(result)
+        if (result[0]) return [...previous]
+        return [...previous, ...breedsData]
+      })
       setIsLoading(false)
 
     }
@@ -45,6 +61,11 @@ const FuncCats = () => {
 
   }, [currentPage])
 
+  // useEffect(() => {
+  //   if (counter === 100) {
+  //     // 무슨 기능 ...
+  //   }
+  // }, [counter])
 
   return (
     <div className="Cats">

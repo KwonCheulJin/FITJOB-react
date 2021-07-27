@@ -51,7 +51,7 @@ function isSameObject(first, second) {
   return JSON.stringify(first) === JSON.stringify(second)
 }
 
-console.log(isSameObject(a, b))
+// console.log(isSameObject(a, b))
 
 function TextInputWithFocusButton() {
   const inputEl = useRef(null);

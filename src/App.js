@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import FuncCats from './function/FuncCats'
 import Counter from './class/components/Counter'
 import { useState, useRef } from 'react'
-
+import ScrollCats from './infinityScroll/ScrollCats'
 
 function App() {
   return (
@@ -18,6 +18,11 @@ function App() {
         <Route path="/func">
           <main>
             <FuncCats />
+          </main>
+        </Route>
+        <Route path="/scroll">
+          <main>
+            <ScrollCats />
           </main>
         </Route>
       </Switch>

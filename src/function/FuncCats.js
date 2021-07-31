@@ -6,16 +6,15 @@ import BreedsList from './components/Breeds'
 import CurrentPageNumber from './components/CurrentPageNumber'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 
-const fetchedPages = []
 
 const FuncCats = () => {
 
   const [isLoading, setIsLoading] = useState(false)
-  const [breeds, setBreeds] = useState([])
   // const [counter, setCounter] = useState(0)
   const [storedBreeds, storeBreeds] = useLocalStorage('breeds', [])
   const [storedPages, storePages] = useLocalStorage('fetchedPages', [])
-  const [currentPage, setCurrentPage] = useState(storedPages[storedPages.length - 1] === undefined ? 1 : storedPages[storedPages.length - 1])
+  const [breeds, setBreeds] = useState(storedBreeds)
+  const [currentPage, setCurrentPage] = useState(storedPages.length !== 0 ? storedPages[storedPages.length - 1] : 1)
 
   const handlePreviousPage = useCallback(() => {
     if (currentPage <= 1) return
@@ -89,7 +88,7 @@ const FuncCats = () => {
       <CurrentPageNumber currentPage={currentPage} />
       <HeaderButtonGroup onPreviousPage={handlePreviousPage} onNextPage={handleNextPage} />
       <LoadingIndicator isLoading={isLoading} />
-      <BreedsList breeds={storedBreeds} />
+      <BreedsList breeds={breeds} />
       <LoadingIndicator isLoading={isLoading} />
       <HeaderButtonGroup onPreviousPage={handlePreviousPage} onNextPage={handleNextPage} />
     </div>

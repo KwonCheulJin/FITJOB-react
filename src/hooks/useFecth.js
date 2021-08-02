@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { getQueryString } from '../utils/misc'
 import { useLocalStorage } from './useLocalStorage'
 
-const fetchedData = []
+
 export function useFecth(apiUrl, params, headers, initialData = [], currentPage) {
   const [data, setData] = useState(initialData)
   const [isLoading, setIsLoading] = useState(false)

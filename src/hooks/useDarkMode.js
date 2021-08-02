@@ -12,7 +12,7 @@ function useDarkMode() {
   const enabled =
     typeof enabledState !== 'undefined' ? enabledState : prefersDarkMode;
 
-  console.log(enabled)
+
   useEffect(
     () => {
       const className = 'dark-mode';

@@ -7,13 +7,10 @@ export default function useMedia(queries, values, defaultValue) {
   const [value, setValue] = useState(defaultValue);
 
   const mediaQueryLists = queries.map(q => window.matchMedia(q));
-  console.log(queries, values, defaultValue, 'top')
+
   // State update function
   const getValue = () => {
-    const index = mediaQueryLists.findIndex(mql => {
-      console.log(mql, 'function')
-      mql.matches
-    });
+    const index = mediaQueryLists.findIndex(mql => mql.matches);
     return typeof values[index] !== 'undefined' ? values[index] : defaultValue;
   };
 
@@ -21,10 +18,7 @@ export default function useMedia(queries, values, defaultValue) {
     () => {
       setValue(getValue);
       const handler = () => setValue(getValue);
-      mediaQueryLists.forEach(mql => {
-        console.log(mql, 'useEffect')
-        mql.addListener(handler)
-      });
+      mediaQueryLists.forEach(mql => mql.addListener(handler));
       return () => mediaQueryLists.forEach(mql => mql.removeListener(handler));
     }, []);
 

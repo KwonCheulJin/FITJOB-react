@@ -10,6 +10,7 @@ div.Cats {
     .page-group {
       display: flex;
       font-size: 24px;
+      font-weight: 700;
       p {
         display: block;
         margin: 0;
@@ -118,10 +119,6 @@ body.dark-mode {
   background-color: #232323;
   color: #dfdfdf;
 
-  .navbar {
-    background-color: #1a1919;
-  }
-
   .dark-mode-toggle > button {
     color: #999;
     &:last-child {
@@ -137,20 +134,6 @@ body.dark-mode {
     a {
       color: #dfdfdf;
     }
-  }
-}
-
-.navbar {
-  display: flex;
-  background-color: #95d3ff;
-  padding: 20px;
-}
-
-.content {
-  padding: 20px 30px;
-
-  h1 {
-    font-size: 1.6rem;
   }
 }
 

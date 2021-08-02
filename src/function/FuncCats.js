@@ -3,7 +3,6 @@ import { catApiUrl, catHeaders } from '../utils/api'
 import LoadingIndicator from './components/LoadingIndicator'
 import HeaderButtonGroup from './components/HeaderButtonGroup'
 import BreedsList from './components/Breeds'
-import CurrentPageNumber from './components/CurrentPageNumber'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import { useFecth } from '../hooks/useFecth'
 
@@ -45,12 +44,11 @@ const FuncCats = () => {
     <div className="Cats">
       {!hasError ? (
         <>
-          <CurrentPageNumber currentPage={currentPage} />
-          <HeaderButtonGroup onPreviousPage={handlePreviousPage} onNextPage={handleNextPage} />
+          <HeaderButtonGroup currentPage={currentPage} onPreviousPage={handlePreviousPage} onNextPage={handleNextPage} />
           <LoadingIndicator isLoading={isLoading} />
           <BreedsList breeds={breeds} />
           <LoadingIndicator isLoading={isLoading} />
-          <HeaderButtonGroup onPreviousPage={handlePreviousPage} onNextPage={handleNextPage} />
+          <HeaderButtonGroup currentPage={currentPage} onPreviousPage={handlePreviousPage} onNextPage={handleNextPage} />
         </>
       ) : (
         <p>

@@ -1,6 +1,7 @@
-import React from 'react'
+import CurrentPageNumber from './CurrentPageNumber'
 
-const HeaderButtonGroup = ({ onPreviousPage, onNextPage }) => {
+
+const HeaderButtonGroup = ({ currentPage, onPreviousPage, onNextPage }) => {
 
   if (
     typeof onPreviousPage !== 'function' ||
@@ -10,10 +11,11 @@ const HeaderButtonGroup = ({ onPreviousPage, onNextPage }) => {
   }
 
   return (
-    <>
-      <button onClick={onPreviousPage}>이전 페이지</button>
-      <button onClick={onNextPage}>다음 페이지</button>
-    </>
+    <div className='header-group'>
+      <button className="handle-btn" onClick={onPreviousPage}>이전 페이지</button>
+      <CurrentPageNumber currentPage={currentPage} />
+      <button className="handle-btn" onClick={onNextPage}>다음 페이지</button>
+    </div>
   )
 }
 

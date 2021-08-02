@@ -9,7 +9,6 @@ import { useFecth } from '../hooks/useFecth'
 
 
 const FuncCats = () => {
-
   const [storedBreeds, storeBreeds] = useLocalStorage('breeds', [])
   const [storedPages, storePages] = useLocalStorage('fetchedPages', [])
   const [currentPage, setCurrentPage] = useState(storedPages.length !== 0 ? storedPages[storedPages.length - 1] : 1)
@@ -28,7 +27,8 @@ const FuncCats = () => {
     `${catApiUrl}/breeds`,
     params,
     catHeaders,
-    storedBreeds
+    storedBreeds,
+    currentPage
   )
 
   const handlePreviousPage = useCallback(() => {
@@ -40,56 +40,6 @@ const FuncCats = () => {
   const handleNextPage = useCallback(() => {
     setCurrentPage((previousPage) => previousPage + 1)
   }, [])
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       setIsLoading(true)
-  //       const breedsData = await getCatBreeds(currentPage, 10)
-  //       if (breedsData.length === 0) {
-  //         setIsLoading(false)
-  //         return
-  //       }
-  //       // ----------- 4주차 내가 작성했던 코드 -----------
-  //       // setBreeds((previous) => {
-  //       //   // console.log(new Set(previous), previous.length, breedsData, currentPage)
-  //       //   function getUnique(breedsData, previous) {
-  //       //     return breedsData.map((value) => {
-  //       //       if (previous.length === undefined) return
-  //       //       for (let item of previous) {
-  //       //         if (value.id === item.id) return true
-  //       //       }
-  //       //     });
-  //       //   }
-  //       //   let result = getUnique(breedsData, previous)
-  //       //   console.log(result)
-  //       //   if (result[0]) return [...previous]
-  //       //   return [...previous, ...breedsData]
-  //       // })
-  //       // ----------- 4주차 내가 작성했던 코드 -----------
-  //       setBreeds((previous) => {
-  //         // console.log(previous)
-  //         const updatedBreeds = [...previous, ...breedsData]
-  //         storeBreeds(updatedBreeds)
-  //         return updatedBreeds
-  //       })
-  //     } catch (error) {
-  //       console.log(error)
-  //       setError(error)
-  //     } finally {
-  //       setIsLoading(false)
-  //     }
-  //   }
-
-  //   if (storedPages.includes(currentPage)) {
-  //     return
-  //   }
-  //   storePages(storedPages.concat(currentPage))
-  //   // console.log(storedPages[storedPages.length - 1])
-  //   fetchData()
-
-  // }, [currentPage])
-
 
   return (
     <div className="Cats">
@@ -115,22 +65,3 @@ const FuncCats = () => {
 }
 
 export default FuncCats
-
-
-// ----------- 4주차 내가 작성했던 코드 -----------
-        // setBreeds((previous) => {
-        //   // console.log(new Set(previous), previous.length, breedsData, currentPage)
-        //   function getUnique(breedsData, previous) {
-        //     return breedsData.map((value) => {
-        //       if (previous.length === undefined) return
-        //       for (let item of previous) {
-        //         if (value.id === item.id) return true
-        //       }
-        //     });
-        //   }
-        //   let result = getUnique(breedsData, previous)
-        //   console.log(result)
-        //   if (result[0]) return [...previous]
-        //   return [...previous, ...breedsData]
-        // })
-        // ----------- 4주차 내가 작성했던 코드 -----------

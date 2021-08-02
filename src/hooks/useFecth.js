@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react'
 import { getQueryString } from '../utils/misc'
+import { useLocalStorage } from './useLocalStorage'
 
-export function useFecth(apiUrl, params, headers, initialData) {
+const fetchedData = []
+export function useFecth(apiUrl, params, headers, initialData = [], currentPage) {
   const [data, setData] = useState(initialData)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [storedBreeds, storeBreeds] = useLocalStorage('breeds', [])
+  const [storedPages, storePages] = useLocalStorage('fetchedPages', [])
+
+
 
   useEffect(() => {
 
@@ -20,7 +26,12 @@ export function useFecth(apiUrl, params, headers, initialData) {
           headers,
         })
         const data = await response.json()
-        setData(previousData => previousData.concat(data))
+        setData((previousData) => {
+          // console.log(previousData)
+          const updatedBreeds = [...previousData, ...data]
+          storeBreeds(updatedBreeds)
+          return updatedBreeds
+        })
       } catch (error) {
         console.log(error)
         setError(error)
@@ -28,7 +39,10 @@ export function useFecth(apiUrl, params, headers, initialData) {
         setIsLoading(false)
       }
     }
-
+    if (storedPages.includes(currentPage)) {
+      return
+    }
+    storePages(storedPages.concat(currentPage))
     fetchData()
   }, [apiUrl, params, headers])
 

@@ -4,7 +4,7 @@ import useDarkMode from '../../hooks/useDarkMode'
 
 const CurrentPageNumber = ({ currentPage }) => {
   const [darkMode, setDarkMode] = useDarkMode();
-  // console.log(currentPage)
+  console.log(darkMode, setDarkMode)
   if (typeof currentPage !== 'number') {
     throw new Error('currentPage number props로 전달되지 않았습니다.')
   }

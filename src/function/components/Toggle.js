@@ -1,6 +1,10 @@
-const Toggle = ({ darkMode, onDarkMode }) => (
-  <div className="dark-mode-toggle">
-    <button type="button" onClick={() => onDarkMode(false)}>
+import useDarkMode from '../../hooks/useDarkMode'
+
+const Toggle = () => {
+  const [darkMode, setDarkMode] = useDarkMode();
+
+  return (<div className="dark-mode-toggle">
+    <button type="button" onClick={() => setDarkMode(false)}>
       ☀
     </button>
     <span className="toggle-control">
@@ -9,14 +13,14 @@ const Toggle = ({ darkMode, onDarkMode }) => (
         id="dmcheck"
         type="checkbox"
         checked={darkMode}
-        onChange={() => onDarkMode(!darkMode)}
+        onChange={() => setDarkMode(!darkMode)}
       />
       <label htmlFor="dmcheck" />
     </span>
-    <button type="button" onClick={() => onDarkMode(true)}>
+    <button type="button" onClick={() => setDarkMode(true)}>
       ☾
     </button>
-  </div>
-);
+  </div>)
+}
 
 export default Toggle;

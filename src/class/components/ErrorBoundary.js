@@ -11,8 +11,7 @@ class ErrorBoundary extends Component {
     }
   }
 
-  static getDerivedStateFromError(error) {
-    // 다음 렌더링에서 폴백 UI가 보이도록 상태를 업데이트 합니다.
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
@@ -24,11 +23,10 @@ class ErrorBoundary extends Component {
   }
 
   render() {
-    const { errorFallback } = this.props
+
     if (this.state.hasError) {
       // error fallback
-      return (<errorFallback />
-      )
+      return <h1>Error!</h1>
     }
     return this.props.children
   }

@@ -3,12 +3,12 @@ import { getQueryString } from '../utils/misc'
 import { useLocalStorage } from './useLocalStorage'
 
 
-export function useFecth(apiUrl, params, headers, initialData = [], currentPage) {
+export function useFecth(apiUrl, params, headers, initialData = [], storeStorage, getShouldFetch) {
   const [data, setData] = useState(initialData)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
-  const [storedBreeds, storeBreeds] = useLocalStorage('breeds', [])
-  const [storedPages, storePages] = useLocalStorage('fetchedPages', [])
+  // const [storedBreeds, storeBreeds] = useLocalStorage('breeds', [])
+  // const [storedPages, storePages] = useLocalStorage('fetchedPages', [])
 
 
 
@@ -26,12 +26,8 @@ export function useFecth(apiUrl, params, headers, initialData = [], currentPage)
           headers,
         })
         const data = await response.json()
-        setData((previousData) => {
-          // console.log(previousData)
-          const updatedBreeds = [...previousData, ...data]
-          storeBreeds(updatedBreeds)
-          return updatedBreeds
-        })
+        setData((previousData) => [...previousData, ...data])
+        storeStorage(data)
       } catch (error) {
         console.log(error)
         setError(error)
@@ -39,11 +35,14 @@ export function useFecth(apiUrl, params, headers, initialData = [], currentPage)
         setIsLoading(false)
       }
     }
-    if (storedPages.includes(currentPage)) {
-      return
+    // if (storedPages.includes(currentPage)) {
+    //   return
+    // }
+    // storePages(storedPages.concat(currentPage))
+
+    if (getShouldFetch()) {
+      fetchData()
     }
-    storePages(storedPages.concat(currentPage))
-    fetchData()
   }, [apiUrl, params, headers])
 
   return {

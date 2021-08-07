@@ -12,7 +12,7 @@ const CurrentPageNumber = ({ currentPage }) => {
   return (
     <div className="page-group">
       <p>현재 페이지: {currentPage}</p>
-      <Toggle darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Toggle darkMode={darkMode} onDarkMode={setDarkMode} />
     </div>
   )
 }

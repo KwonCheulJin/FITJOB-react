@@ -1,6 +1,6 @@
-const Toggle = ({ darkMode, setDarkMode }) => (
+const Toggle = ({ darkMode, onDarkMode }) => (
   <div className="dark-mode-toggle">
-    <button type="button" onClick={() => setDarkMode(false)}>
+    <button type="button" onClick={() => onDarkMode(false)}>
       ☀
     </button>
     <span className="toggle-control">
@@ -9,11 +9,11 @@ const Toggle = ({ darkMode, setDarkMode }) => (
         id="dmcheck"
         type="checkbox"
         checked={darkMode}
-        onChange={() => setDarkMode(!darkMode)}
+        onChange={() => onDarkMode(!darkMode)}
       />
       <label htmlFor="dmcheck" />
     </span>
-    <button type="button" onClick={() => setDarkMode(true)}>
+    <button type="button" onClick={() => onDarkMode(true)}>
       ☾
     </button>
   </div>

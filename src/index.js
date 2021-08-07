@@ -4,6 +4,16 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom'
 import reportWebVitals from './reportWebVitals';
+import * as Sentry from "@sentry/react";
+import { Integrations } from "@sentry/tracing";
+
+const sentryDSN = 'https://7c0e1200d97c40c9ac2bba60c502ec1f@o947483.ingest.sentry.io/5896859'
+
+Sentry.init({
+  dsn: sentryDSN,
+  integrations: [new Integrations.BrowserTracing()],
+  tracesSampleRate: 0.1,
+});
 
 ReactDOM.render(
   <React.StrictMode>

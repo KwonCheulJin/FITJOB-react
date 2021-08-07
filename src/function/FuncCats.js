@@ -27,8 +27,18 @@ const FuncCats = () => {
     params,
     catHeaders,
     storedBreeds,
-    currentPage
+    (newData) => {
+      storeBreeds(storedBreeds.concat(newData))
+    },
+    () => {
+      const hasFetched = storedPages.includes(currentPage)
+      if (!hasFetched) {
+        storePages(storedPages.concat(currentPage))
+      }
+      return !hasFetched
+    }
   )
+
 
   const handlePreviousPage = useCallback(() => {
     if (currentPage <= 1) return
